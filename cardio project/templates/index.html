@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heart Disease Prediction</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f4f4f4; text-align: center; padding: 20px; }
+        .container { background: white; padding: 20px; border-radius: 10px; width: 50%; margin: auto; box-shadow: 0px 0px 10px gray; }
+        input, select, button { margin: 10px; padding: 8px; width: 80%; }
+        button { background: #28a745; color: white; border: none; cursor: pointer; }
+        button:hover { background: #218838; }
+        h2 { color: #333; }
+        .result { font-size: 20px; margin-top: 20px; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Heart Disease Prediction</h2>
+        <form action="/predict" method="post">
+            <input type="number" name="age" placeholder="Age" required><br>
+            <select name="sex">
+                <option value="1">Male</option>
+                <option value="0">Female</option>
+            </select><br>
+            <input type="number" name="cp" placeholder="Chest Pain Type (0-3)" required><br>
+            <input type="number" name="trestbps" placeholder="Resting Blood Pressure" required><br>
+            <input type="number" name="chol" placeholder="Cholesterol Level" required><br>
+            <select name="fbs">
+                <option value="1">Fasting Blood Sugar > 120 mg/dl</option>
+                <option value="0">Fasting Blood Sugar <= 120 mg/dl</option>
+            </select><br>
+            <input type="number" name="restecg" placeholder="Resting ECG (0-2)" required><br>
+            <input type="number" name="thalach" placeholder="Max Heart Rate Achieved" required><br>
+            <select name="exang">
+                <option value="1">Exercise Induced Angina (Yes)</option>
+                <option value="0">Exercise Induced Angina (No)</option>
+            </select><br>
+            <button type="submit">Predict</button>
+        </form>
+
+        {% if prediction_text %}
+            <div class="result">{{ prediction_text }}</div>
+        {% endif %}
+    </div>
+</body>
+</html>
